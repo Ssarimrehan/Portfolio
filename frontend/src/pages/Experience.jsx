@@ -13,7 +13,9 @@ export default function Experience() {
     const fetchExperience = async () => {
       try {
         setLoading(true);
-        const apiUrl = `${process.env.REACT_APP_API_URL}/api/experience`;
+        const baseUrl = process.env.REACT_APP_API_URL || 'https://portfolio-backend-five-tau.vercel.app';
+        const apiUrl = `${baseUrl}/api/experience`;
+        console.log('Fetching from:', apiUrl);
         const response = await fetch(apiUrl);
         if (!response.ok) throw new Error("Failed to fetch experience data");
         const data = await response.json();

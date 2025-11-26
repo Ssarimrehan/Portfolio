@@ -9,7 +9,9 @@ export default function About() {
     const fetchAbout = async () => {
       try {
         setLoading(true);
-        const apiUrl = `${process.env.REACT_APP_API_URL}/api/about`;
+        const baseUrl = process.env.REACT_APP_API_URL || 'https://portfolio-backend-five-tau.vercel.app';
+        const apiUrl = `${baseUrl}/api/about`;
+        console.log('Fetching from:', apiUrl);
         const response = await fetch(apiUrl);
         if (!response.ok) throw new Error("Failed to fetch about data");
         const data = await response.json();

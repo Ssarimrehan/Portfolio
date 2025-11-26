@@ -9,7 +9,9 @@ export default function Projects() {
     const fetchProjects = async () => {
       try {
         setLoading(true);
-        const apiUrl = `${process.env.REACT_APP_API_URL}/api/projects`;
+        const baseUrl = process.env.REACT_APP_API_URL || 'https://portfolio-backend-five-tau.vercel.app';
+        const apiUrl = `${baseUrl}/api/projects`;
+        console.log('Fetching from:', apiUrl);
         const response = await fetch(apiUrl);
         if (!response.ok) throw new Error("Failed to fetch projects data");
         let data = await response.json();

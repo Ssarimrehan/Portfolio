@@ -15,7 +15,9 @@ export default function Skills() {
     const fetchSkills = async () => {
       try {
         setLoading(true);
-        const apiUrl = `${process.env.REACT_APP_API_URL}/api/skills`;
+        const baseUrl = process.env.REACT_APP_API_URL || 'https://portfolio-backend-five-tau.vercel.app';
+        const apiUrl = `${baseUrl}/api/skills`;
+        console.log('Fetching from:', apiUrl);
         const response = await fetch(apiUrl);
         if (!response.ok) throw new Error("Failed to fetch skills data");
         const data = await response.json();

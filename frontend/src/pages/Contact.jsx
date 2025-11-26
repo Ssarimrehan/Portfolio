@@ -26,7 +26,9 @@ export default function Contact() {
     setSuccess(false);
 
     try {
-      const apiUrl = `${process.env.REACT_APP_API_URL}/api/contact`;
+      const baseUrl = process.env.REACT_APP_API_URL || 'https://portfolio-backend-five-tau.vercel.app';
+      const apiUrl = `${baseUrl}/api/contact`;
+      console.log('Sending to:', apiUrl);
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
