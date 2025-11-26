@@ -9,7 +9,8 @@ export default function About() {
     const fetchAbout = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:5000/api/about");
+        const apiUrl = `${process.env.REACT_APP_API_URL}/api/about`;
+        const response = await fetch(apiUrl);
         if (!response.ok) throw new Error("Failed to fetch about data");
         const data = await response.json();
         setAbout(data);

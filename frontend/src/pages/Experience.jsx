@@ -13,7 +13,8 @@ export default function Experience() {
     const fetchExperience = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:5000/api/experience");
+        const apiUrl = `${process.env.REACT_APP_API_URL}/api/experience`;
+        const response = await fetch(apiUrl);
         if (!response.ok) throw new Error("Failed to fetch experience data");
         const data = await response.json();
         setExperience(data || { jobs: [], education: [], leadership: [] });

@@ -26,7 +26,8 @@ export default function Contact() {
     setSuccess(false);
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const apiUrl = `${process.env.REACT_APP_API_URL}/api/contact`;
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +37,7 @@ export default function Contact() {
 
       if (!response.ok) throw new Error("Failed to send message");
 
-      const data = await response.json();
+      await response.json();
       setSuccess(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
       setTimeout(() => setSuccess(false), 5000);
