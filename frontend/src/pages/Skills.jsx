@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getApiUrl } from "../config/api";
 
 export default function Skills() {
   const [skills, setSkills] = useState({
@@ -15,8 +16,7 @@ export default function Skills() {
     const fetchSkills = async () => {
       try {
         setLoading(true);
-        const baseUrl = process.env.REACT_APP_API_URL || 'https://portfolio-backend-five-tau.vercel.app';
-        const apiUrl = `${baseUrl}/api/skills`;
+        const apiUrl = getApiUrl("/api/skills");
         console.log('Fetching from:', apiUrl);
         const response = await fetch(apiUrl);
         if (!response.ok) throw new Error("Failed to fetch skills data");

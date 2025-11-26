@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getApiUrl } from "../config/api";
 
 export default function About() {
   const [about, setAbout] = useState(null);
@@ -9,8 +10,7 @@ export default function About() {
     const fetchAbout = async () => {
       try {
         setLoading(true);
-        const baseUrl = process.env.REACT_APP_API_URL || 'https://portfolio-backend-five-tau.vercel.app';
-        const apiUrl = `${baseUrl}/api/about`;
+        const apiUrl = getApiUrl("/api/about");
         console.log('Fetching from:', apiUrl);
         const response = await fetch(apiUrl);
         if (!response.ok) throw new Error("Failed to fetch about data");

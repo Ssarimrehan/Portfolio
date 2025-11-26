@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getApiUrl } from "../config/api";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -26,10 +27,7 @@ export default function Contact() {
     setSuccess(false);
 
     try {
-      const baseUrl =
-        process.env.REACT_APP_API_URL ||
-        "https://portfolio-backend-five-tau.vercel.app";
-      const apiUrl = `${baseUrl}/api/contact`;
+      const apiUrl = getApiUrl("/api/contact");
       console.log("Sending to:", apiUrl);
       const response = await fetch(apiUrl, {
         method: "POST",

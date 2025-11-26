@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getApiUrl } from "../config/api";
 
 export default function Experience() {
   const [experience, setExperience] = useState({
@@ -13,8 +14,7 @@ export default function Experience() {
     const fetchExperience = async () => {
       try {
         setLoading(true);
-        const baseUrl = process.env.REACT_APP_API_URL || 'https://portfolio-backend-five-tau.vercel.app';
-        const apiUrl = `${baseUrl}/api/experience`;
+        const apiUrl = getApiUrl("/api/experience");
         console.log('Fetching from:', apiUrl);
         const response = await fetch(apiUrl);
         if (!response.ok) throw new Error("Failed to fetch experience data");
